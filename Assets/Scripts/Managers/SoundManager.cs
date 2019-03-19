@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public List<AudioClip> AudioClips = new List<AudioClip>();
+    [SerializeField]
+    private List<AudioClip> AudioClips = new List<AudioClip>();
+
+    private List<AudioSource> _currentlyPlaingAudioSources = new List<AudioSource>();
 
     private AudioSource CreateAudioSourceWithAudioClip(string name, float volume, bool loop)
     {
@@ -24,14 +27,39 @@ public class SoundManager : MonoBehaviour
         return audioSource;
     }
 
+    private AudioSource PlaySound(string name, float volume, bool loop)
+    {
+        var audioSource = CreateAudioSourceWithAudioClip(name, volume,  loop);
+
+        audioSource.Play();
+        _currentlyPlaingAudioSources.Add(audioSource);
+
+        return audioSource;
+    }
+
+    public void StopSound(string name)
+    {
+        var audioSource = _currentlyPlaingAudioSources.FirstOrDefault(x => x.name == name);
+        if (audioSource == null)
+        {
+            Debug.LogError("No audioSource was found with specified name :" + name);
+            return;
+        }
+
+        audioSource.Stop();
+        _currentlyPlaingAudioSources.Remove(audioSource);
+
+        Destroy(audioSource.gameObject);
+    }
+
     public void PlaySound2D(string name, float volume, bool loop)
     {
-        CreateAudioSourceWithAudioClip(name, volume, loop);
+        PlaySound(name, volume, loop);
     }
 
     public void PlaySound3D(string name, float volume, bool loop, GameObject bindGameObject, bool fallowGameObject)
     {
-        var audioSource = CreateAudioSourceWithAudioClip(name, volume, loop);
+        var audioSource = PlaySound(name, volume, loop);
 
         audioSource.gameObject.transform.position = bindGameObject.transform.position;
         if (fallowGameObject)
