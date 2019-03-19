@@ -2,69 +2,72 @@
 using System.Linq;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField]
-    private List<AudioClip> AudioClips = new List<AudioClip>();
-
-    private List<AudioSource> _currentlyPlaingAudioSources = new List<AudioSource>();
-
-    private AudioSource CreateAudioSourceWithAudioClip(string name, float volume, bool loop)
+    public class SoundManager : MonoBehaviour
     {
-        var audioClip = AudioClips.FirstOrDefault(x => x.name == name);
-        if (audioClip == null)
+        [SerializeField]
+        private List<AudioClip> AudioClips = new List<AudioClip>();
+
+        private List<AudioSource> _currentlyPlaingAudioSources = new List<AudioSource>();
+
+        private AudioSource CreateAudioSourceWithAudioClip(string name, float volume, bool loop)
         {
-            Debug.LogError("No audioClip was found with specified name :" + name);
-            return null;
+            var audioClip = AudioClips.FirstOrDefault(x => x.name == name);
+            if (audioClip == null)
+            {
+                Debug.LogError("No audioClip was found with specified name :" + name);
+                return null;
+            }
+
+            var gameObject = new GameObject();
+            var audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = audioClip;
+            audioSource.volume = volume;
+            audioSource.loop = loop;
+
+            return audioSource;
         }
 
-        var gameObject = new GameObject();
-        var audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = audioClip;
-        audioSource.volume = volume;
-        audioSource.loop = loop;
-
-        return audioSource;
-    }
-
-    private AudioSource PlaySound(string name, float volume, bool loop)
-    {
-        var audioSource = CreateAudioSourceWithAudioClip(name, volume,  loop);
-
-        audioSource.Play();
-        _currentlyPlaingAudioSources.Add(audioSource);
-
-        return audioSource;
-    }
-
-    public void StopSound(string name)
-    {
-        var audioSource = _currentlyPlaingAudioSources.FirstOrDefault(x => x.name == name);
-        if (audioSource == null)
+        private AudioSource PlaySound(string name, float volume, bool loop)
         {
-            Debug.LogError("No audioSource was found with specified name :" + name);
-            return;
+            var audioSource = CreateAudioSourceWithAudioClip(name, volume,  loop);
+
+            audioSource.Play();
+            _currentlyPlaingAudioSources.Add(audioSource);
+
+            return audioSource;
         }
 
-        audioSource.Stop();
-        _currentlyPlaingAudioSources.Remove(audioSource);
-
-        Destroy(audioSource.gameObject);
-    }
-
-    public void PlaySound2D(string name, float volume, bool loop)
-    {
-        PlaySound(name, volume, loop);
-    }
-
-    public void PlaySound3D(string name, float volume, bool loop, GameObject bindGameObject, bool fallowGameObject)
-    {
-        var audioSource = PlaySound(name, volume, loop);
-
-        audioSource.gameObject.transform.position = bindGameObject.transform.position;
-        if (fallowGameObject)
+        public void StopSound(string name)
         {
-            audioSource.gameObject.transform.SetParent(bindGameObject.transform);
+            var audioSource = _currentlyPlaingAudioSources.FirstOrDefault(x => x.name == name);
+            if (audioSource == null)
+            {
+                Debug.LogError("No audioSource was found with specified name :" + name);
+                return;
+            }
+
+            audioSource.Stop();
+            _currentlyPlaingAudioSources.Remove(audioSource);
+
+            Destroy(audioSource.gameObject);
+        }
+
+        public void PlaySound2D(string name, float volume, bool loop)
+        {
+            PlaySound(name, volume, loop);
+        }
+
+        public void PlaySound3D(string name, float volume, bool loop, GameObject bindGameObject, bool fallowGameObject)
+        {
+            var audioSource = PlaySound(name, volume, loop);
+
+            audioSource.gameObject.transform.position = bindGameObject.transform.position;
+            if (fallowGameObject)
+            {
+                audioSource.gameObject.transform.SetParent(bindGameObject.transform);
+            }
         }
     }
 }
