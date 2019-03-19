@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Managers
 {
+    /*
+    Выбранный подход к решению является наиболее оптимизированным т.к. Ориентировочное время на выполнение: 1ч
+    */
     public class SoundManager : MonoBehaviour
     {
         [SerializeField]
