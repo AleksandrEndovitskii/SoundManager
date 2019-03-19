@@ -9,9 +9,12 @@ namespace Managers
         private SoundManager soundManagerPrefab;
         [SerializeField]
         private GameObjectManager gameObjectManagerPrefab;
+        [SerializeField]
+        private TestSoundManager testSoundManagerPrefab;
 
         public SoundManager SoundManagerInstance;
         public GameObjectManager GameObjectManagerInstance;
+        private TestSoundManager TestSoundManagerInstance;
 
         // static instance of GameManager which allows it to be accessed by any other script 
         public static GameManager Instance;
@@ -45,6 +48,9 @@ namespace Managers
 
             GameObjectManagerInstance = Instantiate(gameObjectManagerPrefab);
             GameObjectManagerInstance.Initialize();
+
+            TestSoundManagerInstance = Instantiate(testSoundManagerPrefab);
+            TestSoundManagerInstance.Initialize();
         }
 
         public void Uninitialize()
@@ -54,6 +60,9 @@ namespace Managers
 
             GameObjectManagerInstance.Initialize();
             Destroy(GameObjectManagerInstance.gameObject);
+
+            TestSoundManagerInstance.Initialize();
+            Destroy(TestSoundManagerInstance.gameObject);
         }
     }
 }

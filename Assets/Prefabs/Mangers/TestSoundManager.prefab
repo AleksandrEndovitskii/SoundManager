@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5368023079347138903
+--- !u!1 &8870431988624466087
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5368023079347138902}
-  - component: {fileID: 4511432832279057326}
+  - component: {fileID: 1293798744788275294}
+  - component: {fileID: 3068499147310390874}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: TestSoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5368023079347138902
+--- !u!4 &1293798744788275294
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368023079347138903}
+  m_GameObject: {fileID: 8870431988624466087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,23 +31,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4511432832279057326
+--- !u!114 &3068499147310390874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368023079347138903}
+  m_GameObject: {fileID: 8870431988624466087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f1d667b7440e4418b21c81495c4069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4808e28ecb1f40aab76664ab8fa1946b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManagerPrefab: {fileID: 1236574409644383048, guid: 3fcad0f26b441224b8acdc77ec6270cf,
-    type: 3}
-  gameObjectManagerPrefab: {fileID: 1876038139729954048, guid: 380b909532b3491488803e3b6d9f6dde,
-    type: 3}
-  testSoundManagerPrefab: {fileID: 3068499147310390874, guid: 4e9008d5a23d4d340864ab35276b1065,
-    type: 3}
-  SoundManagerInstance: {fileID: 0}
-  GameObjectManagerInstance: {fileID: 0}
