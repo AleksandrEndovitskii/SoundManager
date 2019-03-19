@@ -17,5 +17,11 @@ namespace Managers
         {
             
         }
+
+        public GameObject CreateRandomlyMovedGameObject()
+        {
+            var go = Instantiate(gameObjectPrefab);
+            return go;
+        }
     }
 }

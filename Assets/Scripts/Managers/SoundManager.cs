@@ -15,6 +15,8 @@ namespace Managers
 
         private List<AudioSource> _currentlyPlaingAudioSources = new List<AudioSource>();
 
+        private static System.Random _random = new System.Random();
+
         private AudioSource CreateAudioSourceWithAudioClip(string name, float volume, bool loop)
         {
             var audioClip = AudioClips.FirstOrDefault(x => x.name == name);
@@ -53,6 +55,20 @@ namespace Managers
 
         }
 
+        public string GetRandomSoundName()
+        {
+            var randomSoundIndex = _random.Next(0, AudioClips.Count);
+
+            return AudioClips[randomSoundIndex].name;
+        }
+
+        public string GetRandomcurrentlyPlaingAudioSourceName()
+        {
+            var randomSoundIndex = _random.Next(0, _currentlyPlaingAudioSources.Count);
+
+            return _currentlyPlaingAudioSources[randomSoundIndex].name;
+        }
+
         public void StopSound(string name)
         {
             var audioSource = _currentlyPlaingAudioSources.FirstOrDefault(x => x.name == name);
@@ -68,12 +84,12 @@ namespace Managers
             Destroy(audioSource.gameObject);
         }
 
-        public void PlaySound2D(string name, float volume, bool loop)
+        public AudioSource PlaySound2D(string name, float volume, bool loop)
         {
-            PlaySound(name, volume, loop);
+            return PlaySound(name, volume, loop);
         }
 
-        public void PlaySound3D(string name, float volume, bool loop, GameObject bindGameObject, bool fallowGameObject)
+        public AudioSource PlaySound3D(string name, float volume, bool loop, GameObject bindGameObject, bool fallowGameObject)
         {
             var audioSource = PlaySound(name, volume, loop);
 
@@ -82,6 +98,8 @@ namespace Managers
             {
                 audioSource.gameObject.transform.SetParent(bindGameObject.transform);
             }
+
+            return audioSource;
         }
     }
 }
