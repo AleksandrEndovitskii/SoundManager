@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utilities;
 
 namespace Managers
 {
     /*
     Выбранный подход к решению является наиболее оптимизированным т.к. Ориентировочное время на выполнение: 1ч
     */
-    public class SoundManager : MonoBehaviour
+    public class SoundManager : MonoBehaviour, IInitializable, IUninitializable
     {
         [SerializeField]
         private List<AudioClip> AudioClips = new List<AudioClip>();
@@ -40,6 +41,16 @@ namespace Managers
             _currentlyPlaingAudioSources.Add(audioSource);
 
             return audioSource;
+        }
+
+        public void Initialize()
+        {
+
+        }
+
+        public void Uninitialize()
+        {
+
         }
 
         public void StopSound(string name)

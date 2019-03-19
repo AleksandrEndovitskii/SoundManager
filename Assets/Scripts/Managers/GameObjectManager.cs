@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
+using Utilities;
 
 namespace Managers
 {
-    public class GameObjectManager : MonoBehaviour
+    public class GameObjectManager : MonoBehaviour, IInitializable, IUninitializable
     {
         [SerializeField]
         private GameObject gameObjectPrefab;
 
-        // Start is called before the first frame update
-        void Start()
+        public void Initialize()
         {
-        
+            
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Uninitialize()
         {
-        
+            
         }
     }
 }

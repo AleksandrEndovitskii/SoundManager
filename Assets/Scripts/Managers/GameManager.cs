@@ -1,28 +1,59 @@
 ﻿using UnityEngine;
+using Utilities;
 
 namespace Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour, IInitializable, IUninitializable
     {
         [SerializeField]
         private SoundManager soundManagerPrefab;
         [SerializeField]
         private GameObjectManager gameObjectManagerPrefab;
 
-        private SoundManager _soundManagerInstance;
-        private GameObjectManager _gameObjectManagerInstance;
+        public SoundManager SoundManagerInstance;
+        public GameObjectManager GameObjectManagerInstance;
 
-        // Start is called before the first frame update
-        private void Start()
+        // static instance of GameManager which allows it to be accessed by any other script 
+        public static GameManager Instance;
+
+        private void Awake()
         {
-            _soundManagerInstance = Instantiate(soundManagerPrefab);
-            _gameObjectManagerInstance = Instantiate(gameObjectManagerPrefab);
+            if (Instance == null)
+            {
+                Instance = this;
+
+                DontDestroyOnLoad(this.gameObject); // sets this to not be destroyed when reloading scene 
+            }
+            else
+            {
+                if (Instance != this)
+                {
+                    Instance.Uninitialize();
+
+                    // this enforces our singleton pattern, meaning there can only ever be one instance of a GameManager 
+                    Destroy(this.gameObject);
+                }
+            }
+
+            Instance.Initialize();
         }
 
-        // Update is called once per frame
-        private void Update()
+        public void Initialize()
         {
-        
+            SoundManagerInstance = Instantiate(soundManagerPrefab);
+            SoundManagerInstance.Initialize();
+
+            GameObjectManagerInstance = Instantiate(gameObjectManagerPrefab);
+            GameObjectManagerInstance.Initialize();
+        }
+
+        public void Uninitialize()
+        {
+            SoundManagerInstance.Uninitialize();
+            Destroy(SoundManagerInstance.gameObject);
+
+            GameObjectManagerInstance.Initialize();
+            Destroy(GameObjectManagerInstance.gameObject);
         }
     }
 }
