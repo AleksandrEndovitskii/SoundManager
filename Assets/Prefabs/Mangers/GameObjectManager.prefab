@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5368023079347138903
+--- !u!1 &6557542959494997130
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5368023079347138902}
-  - component: {fileID: 4511432832279057326}
+  - component: {fileID: 8921543241431460000}
+  - component: {fileID: 1876038139729954048}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameObjectManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5368023079347138902
+--- !u!4 &8921543241431460000
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368023079347138903}
+  m_GameObject: {fileID: 6557542959494997130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,19 +31,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4511432832279057326
+--- !u!114 &1876038139729954048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368023079347138903}
+  m_GameObject: {fileID: 6557542959494997130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f1d667b7440e4418b21c81495c4069, type: 3}
+  m_Script: {fileID: 11500000, guid: 472dbda5d46c8ff4caa583ae7248f523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManagerPrefab: {fileID: 1236574409644383048, guid: 3fcad0f26b441224b8acdc77ec6270cf,
-    type: 3}
-  gameObjectManagerPrefab: {fileID: 1876038139729954048, guid: 380b909532b3491488803e3b6d9f6dde,
+  gameObjectPrefab: {fileID: 8028515925341941131, guid: 9ae117500bad5c14a8725de9f2024ace,
     type: 3}
