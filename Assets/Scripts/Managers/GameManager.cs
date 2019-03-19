@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Managers
 {
@@ -10,13 +10,13 @@ namespace Managers
         private SoundManager _soundManagerInstance;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             _soundManagerInstance = Instantiate(soundManagerPrefab);
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
         
         }
