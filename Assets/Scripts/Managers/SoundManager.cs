@@ -40,6 +40,8 @@ namespace Managers
             audioSource.volume = volume;
             audioSource.loop = loop;
 
+            Debug.Log(string.Format("Audio source with audio clip({0}) was created.", audioSource.clip.name));
+
             return audioSource;
         }
 
@@ -90,21 +92,32 @@ namespace Managers
             _currentlyPlaingAudioSources.Remove(audioSource);
 
             Destroy(audioSource.gameObject);
+
+            Debug.Log(string.Format("Stopped to playing audio source with audio clip({0}).", audioSource.clip.name));
         }
 
         public AudioSource PlaySound2D(string name, float volume, bool loop)
         {
-            return PlaySound(name, volume, loop);
+            var audioSource = PlaySound(name, volume, loop);
+
+            Debug.Log(string.Format("Started to playing audio source with audio clip({0}) as 2D.", audioSource.clip.name));
+
+            return audioSource;
         }
 
         public AudioSource PlaySound3D(string name, float volume, bool loop, GameObject bindGameObject, bool fallowGameObject)
         {
             var audioSource = PlaySound(name, volume, loop);
 
+            Debug.Log(string.Format("Started to playing audio source with audio clip({0}) as 3D.", audioSource.clip.name));
+
             audioSource.gameObject.transform.position = bindGameObject.transform.position;
             if (fallowGameObject)
             {
                 audioSource.gameObject.transform.SetParent(bindGameObject.transform);
+
+                Debug.Log(string.Format("Setted audio source with audio clip({0}) to fallow game object({1}).",
+                    audioSource.clip.name, bindGameObject.name));
             }
 
             return audioSource;
