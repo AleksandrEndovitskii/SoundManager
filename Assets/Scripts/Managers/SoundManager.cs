@@ -17,6 +17,14 @@ namespace Managers
 
         private static System.Random _random = new System.Random();
 
+        public bool IsPlayingSomething
+        {
+            get
+            {
+                return _currentlyPlaingAudioSources.Count > 0;
+            }
+        }
+
         private AudioSource CreateAudioSourceWithAudioClip(string name, float volume, bool loop)
         {
             var audioClip = AudioClips.FirstOrDefault(x => x.name == name);

@@ -36,7 +36,10 @@ namespace Managers
                     GameManager.Instance.SoundManagerInstance.PlaySound3D(randomSoundName, 1, true, go, true);
                     break;
                 case 2:
-                    GameManager.Instance.SoundManagerInstance.StopSound(GameManager.Instance.SoundManagerInstance.GetRandomcurrentlyPlaingAudioSourceName());
+                    if (GameManager.Instance.SoundManagerInstance.IsPlayingSomething)
+                    {
+                        GameManager.Instance.SoundManagerInstance.StopSound(GameManager.Instance.SoundManagerInstance.GetRandomcurrentlyPlaingAudioSourceName()); 
+                    }
                     break;
             }
         }
