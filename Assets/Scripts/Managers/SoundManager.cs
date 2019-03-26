@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Lean.Pool;
 using UnityEngine;
 using Utilities;
 
@@ -9,6 +10,9 @@ namespace Managers
     {
         [SerializeField]
         private List<AudioClip> AudioClips = new List<AudioClip>();
+
+        [SerializeField]
+        private AudioSource _audioSourcePrefab;
 
         private List<AudioSource> _currentlyPlaingAudioSources = new List<AudioSource>();
 
@@ -31,8 +35,7 @@ namespace Managers
                 return null;
             }
 
-            var gameObject = new GameObject();
-            var audioSource = gameObject.AddComponent<AudioSource>();
+            var audioSource = LeanPool.Spawn(_audioSourcePrefab);
             audioSource.clip = audioClip;
             audioSource.volume = volume;
             audioSource.loop = loop;
@@ -88,7 +91,7 @@ namespace Managers
             audioSource.Stop();
             _currentlyPlaingAudioSources.Remove(audioSource);
 
-            Destroy(audioSource.gameObject);
+            LeanPool.Despawn(audioSource.gameObject);
 
             Debug.Log(string.Format("Stopped to playing audio source with audio clip({0}).", audioSource.clip.name));
         }
