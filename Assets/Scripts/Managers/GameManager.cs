@@ -11,10 +11,13 @@ namespace Managers
         private GameObjectManager gameObjectManagerPrefab;
         [SerializeField]
         private TestSoundManager testSoundManagerPrefab;
+        [SerializeField]
+        private PoolManager poolManagerPrefab;
 
         public SoundManager SoundManagerInstance;
         public GameObjectManager GameObjectManagerInstance;
         private TestSoundManager TestSoundManagerInstance;
+        private PoolManager PoolManagerInstance;
 
         // static instance of GameManager which allows it to be accessed by any other script 
         public static GameManager Instance;
@@ -51,6 +54,9 @@ namespace Managers
 
             TestSoundManagerInstance = Instantiate(testSoundManagerPrefab);
             TestSoundManagerInstance.Initialize();
+
+            PoolManagerInstance = Instantiate(poolManagerPrefab);
+            PoolManagerInstance.Initialize();
         }
 
         public void Uninitialize()
@@ -63,6 +69,9 @@ namespace Managers
 
             TestSoundManagerInstance.Initialize();
             Destroy(TestSoundManagerInstance.gameObject);
+
+            PoolManagerInstance.Initialize();
+            Destroy(PoolManagerInstance.gameObject);
         }
     }
 }

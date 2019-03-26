@@ -49,5 +49,7 @@ MonoBehaviour:
     type: 3}
   testSoundManagerPrefab: {fileID: 3068499147310390874, guid: 4e9008d5a23d4d340864ab35276b1065,
     type: 3}
+  poolManagerPrefab: {fileID: 5224331141081185462, guid: 8ed94055d2b8e0e40abc2f61ab03eac5,
+    type: 3}
   SoundManagerInstance: {fileID: 0}
   GameObjectManagerInstance: {fileID: 0}

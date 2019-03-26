@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7550196978218551338
+--- !u!1 &3637421553683008187
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3377707388189212670}
-  - component: {fileID: 1236574409644383048}
+  - component: {fileID: 3106216955630751659}
+  - component: {fileID: 8938225519857163304}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: RandomlyMovedObjectPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3377707388189212670
+--- !u!4 &3106216955630751659
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7550196978218551338}
+  m_GameObject: {fileID: 3637421553683008187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,21 +31,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1236574409644383048
+--- !u!114 &8938225519857163304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7550196978218551338}
+  m_GameObject: {fileID: 3637421553683008187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f27c1e21eca965a47b4a77d44440f1e5, type: 3}
+  m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioClips:
-  - {fileID: 8300000, guid: 9138d30e86638e346aca2f77b99ff702, type: 3}
-  - {fileID: 8300000, guid: 12ad21a67a995ee4da394f9803ea6b45, type: 3}
-  - {fileID: 8300000, guid: 21ca2b93223278544959451c07803ee7, type: 3}
-  _audioSourcePrefab: {fileID: 1505928769918487220, guid: 0d8bccdb381f278468a1e65a8de7937d,
-    type: 3}
+  Prefab: {fileID: 8028515925341941131, guid: 9ae117500bad5c14a8725de9f2024ace, type: 3}
+  Notification: 1
+  Preload: 0
+  Capacity: 0
+  Recycle: 0
+  Persist: 0
+  Stamp: 0
+  Warnings: 1
+  spawnedClones: []
+  despawnedClones: []
+  delays: []
