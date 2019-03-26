@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjectPrefab: {fileID: 8028515925341941131, guid: 9ae117500bad5c14a8725de9f2024ace,
     type: 3}
+  _randomlyMovedGameObjectsContainerPrefab: {fileID: 3699742471863196667, guid: aae9766ccb448124089d7f2e6e6dd69c,
+    type: 3}

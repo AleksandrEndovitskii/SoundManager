@@ -49,3 +49,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 21ca2b93223278544959451c07803ee7, type: 3}
   _audioSourcePrefab: {fileID: 1505928769918487220, guid: 0d8bccdb381f278468a1e65a8de7937d,
     type: 3}
+  _audioSourcesContainerPrefab: {fileID: 3699742471863196667, guid: aae9766ccb448124089d7f2e6e6dd69c,
+    type: 3}

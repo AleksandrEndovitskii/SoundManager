@@ -14,6 +14,11 @@ namespace Managers
         [SerializeField]
         private AudioSource _audioSourcePrefab;
 
+        [SerializeField]
+        private GameObject _audioSourcesContainerPrefab;
+
+        private GameObject _audioSourcesContainerInstance;
+
         private List<AudioSource> _currentlyPlaingAudioSources = new List<AudioSource>();
 
         private static System.Random _random = new System.Random();
@@ -36,6 +41,7 @@ namespace Managers
             }
 
             var audioSource = LeanPool.Spawn(_audioSourcePrefab);
+            audioSource.gameObject.transform.SetParent(_audioSourcesContainerInstance.transform);
             audioSource.clip = audioClip;
             audioSource.volume = volume;
             audioSource.loop = loop;
@@ -57,12 +63,13 @@ namespace Managers
 
         public void Initialize()
         {
-
+            _audioSourcesContainerInstance = (_audioSourcesContainerPrefab);
         }
 
         public void Uninitialize()
         {
-
+            Destroy(_audioSourcesContainerInstance.gameObject);
+            _audioSourcesContainerInstance = null;
         }
 
         public string GetRandomSoundName()
