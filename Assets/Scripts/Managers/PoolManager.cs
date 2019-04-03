@@ -1,4 +1,4 @@
-﻿using Lean.Pool;
+﻿using Pooling;
 using UnityEngine;
 using Utilities;
 
@@ -7,9 +7,9 @@ namespace Managers
     public class PoolManager : MonoBehaviour, IInitializable, IUninitializable
     {
         [SerializeField]
-        private LeanGameObjectPool _audioSourcePoolPrefab;
+        private GameObjectPool _audioSourcePoolPrefab;
         [SerializeField]
-        private LeanGameObjectPool _randomlyMovedObjectPoolPrefab;
+        private GameObjectPool _randomlyMovedObjectPoolPrefab;
 
         public void Initialize()
         {

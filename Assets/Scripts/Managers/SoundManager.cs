@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Lean.Pool;
+using Pooling;
 using UnityEngine;
 using Utilities;
 
@@ -35,7 +35,7 @@ namespace Managers
                 return null;
             }
 
-            var audioSource = LeanPool.Spawn(_audioSourcePrefab);
+            var audioSource = Pool.Spawn(_audioSourcePrefab);
             audioSource.clip = audioClip;
             audioSource.volume = volume;
             audioSource.loop = loop;
@@ -91,7 +91,7 @@ namespace Managers
             audioSource.Stop();
             _currentlyPlaingAudioSources.Remove(audioSource);
 
-            LeanPool.Despawn(audioSource.gameObject);
+            Pool.Despawn(audioSource.gameObject);
 
             Debug.Log(string.Format("Stopped to playing audio source with audio clip({0}).", audioSource.clip.name));
         }

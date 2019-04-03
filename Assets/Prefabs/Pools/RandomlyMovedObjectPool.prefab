@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3106216955630751659}
-  - component: {fileID: 8938225519857163304}
+  - component: {fileID: 109020787063481601}
   m_Layer: 0
   m_Name: RandomlyMovedObjectPool
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8938225519857163304
+--- !u!114 &109020787063481601
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,17 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3637421553683008187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
+  m_Script: {fileID: 11500000, guid: 9edeff27a7a90db47bc5fe34e1cb1011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 8028515925341941131, guid: 9ae117500bad5c14a8725de9f2024ace, type: 3}
-  Notification: 1
-  Preload: 0
-  Capacity: 0
-  Recycle: 0
-  Persist: 0
-  Stamp: 0
-  Warnings: 1
-  spawnedClones: []
-  despawnedClones: []
-  delays: []
+  gameObjectPrefab: {fileID: 8028515925341941131, guid: 9ae117500bad5c14a8725de9f2024ace,
+    type: 3}
+  capacity: 0

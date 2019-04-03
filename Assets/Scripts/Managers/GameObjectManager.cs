@@ -1,4 +1,4 @@
-﻿using Lean.Pool;
+﻿using Pooling;
 using UnityEngine;
 using Utilities;
 
@@ -21,7 +21,7 @@ namespace Managers
 
         public GameObject CreateRandomlyMovedGameObject()
         {
-            var go = LeanPool.Spawn(gameObjectPrefab);
+            var go = Pool.Spawn(gameObjectPrefab);
             return go;
         }
     }
