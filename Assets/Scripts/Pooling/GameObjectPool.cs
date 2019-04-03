@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -103,7 +103,8 @@ namespace Pooling
             if (storedGameObjects.Count < capacity) // в процессе работы если места мало - увеличить
             {
                 storedGameObjects.Add(instance);
-                instance.SetActive(false); 
+                instance.SetActive(false);
+                instance.transform.SetParent(this.gameObject.transform);
             }
             else // если места много - уменьшить
             {
@@ -119,6 +120,7 @@ namespace Pooling
             {
                 instance = storedGameObjects.First();
                 storedGameObjects.Remove(instance);
+                instance.gameObject.transform.SetParent(null);
                 instance.SetActive(true);
             }
 
