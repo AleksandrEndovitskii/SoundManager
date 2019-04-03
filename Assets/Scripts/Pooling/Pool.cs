@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Pooling
 {
@@ -26,9 +25,22 @@ namespace Pooling
             return Spawn(prefab.gameObject).GetComponent<T>();
         }
 
-        public static void Despawn(GameObject clone)
+        public static void Despawn(GameObject instance)
         {
-            Object.Destroy(clone);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("prefab", "Can't destroy null instance.");
+            }
+
+            var gameObjectPool = GameObjectPool.GetPoolByInstance(instance);
+
+            gameObjectPool.Despawn(instance);
+        }
+
+        public static void Despawn<T>(T instance)
+            where T : Component
+        {
+            Despawn(instance.gameObject);
         }
     }
 }

@@ -19,6 +19,9 @@ namespace Pooling
         [SerializeField]
         public int capacity;
 
+        [SerializeField]
+        private List<GameObject> instantiatedGameObjects = new List<GameObject>();
+
         public static GameObjectPool GetPoolByPrefab(GameObject prefab)
         {
             var result = Instances.FirstOrDefault(x => x.gameObjectPrefab == prefab);
@@ -26,6 +29,29 @@ namespace Pooling
             if (result == null)
             {
                 throw new ArgumentException("No GameObjectPool for specified prefab.");
+            }
+
+            return result;
+        }
+
+        public static GameObjectPool GetPoolByInstance(GameObject instance)
+        {
+            GameObjectPool result = null;
+
+            foreach (var gameObjectPool in Instances)
+            {
+                foreach (var instantiatedGameObject in gameObjectPool.instantiatedGameObjects)
+                {
+                    if (instantiatedGameObject == instance)
+                    {
+                        result = gameObjectPool;
+                    }
+                }
+            }
+
+            if (result == null)
+            {
+                throw new ArgumentException("No GameObjectPool for specified instance.");
             }
 
             return result;
@@ -50,7 +76,16 @@ namespace Pooling
 
             var instance = Object.Instantiate(gameObjectPrefab);
 
+            instantiatedGameObjects.Add(instance);
+
             return instance;
+        }
+
+        public void Despawn(GameObject instance)
+        {
+            Object.Destroy(instance);
+
+            instantiatedGameObjects.Remove(instance);
         }
     }
 }
