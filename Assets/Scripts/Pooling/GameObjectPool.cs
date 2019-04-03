@@ -22,6 +22,9 @@ namespace Pooling
         [SerializeField]
         private List<GameObject> instantiatedGameObjects = new List<GameObject>();
 
+        [SerializeField]
+        private List<GameObject> storedGameObjects = new List<GameObject>();
+
         public static GameObjectPool GetPoolByPrefab(GameObject prefab)
         {
             var result = Instances.FirstOrDefault(x => x.gameObjectPrefab == prefab);
@@ -74,7 +77,18 @@ namespace Pooling
                 throw new ArgumentNullException("gameObjectPrefab don't specified");
             }
 
-            var instance = Object.Instantiate(gameObjectPrefab);
+            GameObject instance = null;
+
+            if (storedGameObjects.Any())
+            {
+                instance = storedGameObjects.First();
+                storedGameObjects.Remove(instance);
+                instance.SetActive(true);
+            }
+            else
+            {
+                instance = Object.Instantiate(gameObjectPrefab);
+            }
 
             instantiatedGameObjects.Add(instance);
 
@@ -83,9 +97,10 @@ namespace Pooling
 
         public void Despawn(GameObject instance)
         {
-            Object.Destroy(instance);
-
             instantiatedGameObjects.Remove(instance);
+
+            storedGameObjects.Add(instance);
+            instance.SetActive(false);
         }
     }
 }
