@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Pooling
 {
@@ -6,13 +8,22 @@ namespace Pooling
     {
         public static GameObject Spawn(GameObject prefab)
         {
-            return Object.Instantiate(prefab);
+            if (prefab == null)
+            {
+                throw new ArgumentNullException("prefab", "Can't instantiate null prefab.");
+            }
+
+            var gameObjectPool = GameObjectPool.GetPoolByPrefab(prefab);
+
+            var instance = gameObjectPool.Spawn();
+
+            return instance;
         }
 
         public static T Spawn<T>(T prefab)
             where T : Component
         {
-            return Object.Instantiate(prefab);
+            return Spawn(prefab.gameObject).GetComponent<T>();
         }
 
         public static void Despawn(GameObject clone)
