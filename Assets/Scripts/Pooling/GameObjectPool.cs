@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,11 +13,8 @@ namespace Pooling
         [SerializeField]
         public GameObject gameObjectPrefab;
 
-        // в начале создаёться пулл определённого размера
-        // в процессе работы если места мало - увеличить
-        //                   если места много - уменьшить
         [SerializeField]
-        public int capacity;
+        public int capacity = 3;
 
         [SerializeField]
         private List<GameObject> instantiatedGameObjects = new List<GameObject>();
@@ -60,6 +57,11 @@ namespace Pooling
             return result;
         }
 
+        protected virtual void Awake()
+        {
+            PreloadInstances(capacity); // в начале создаёться пулл определённого размера
+        }
+
         protected virtual void OnEnable()
         {
             Instances.Add(this);
@@ -77,15 +79,9 @@ namespace Pooling
                 throw new ArgumentNullException("gameObjectPrefab don't specified");
             }
 
-            GameObject instance = null;
+            var instance = TryGetInstanceFromStore();
 
-            if (storedGameObjects.Any())
-            {
-                instance = storedGameObjects.First();
-                storedGameObjects.Remove(instance);
-                instance.SetActive(true);
-            }
-            else
+            if (instance == null)
             {
                 instance = Object.Instantiate(gameObjectPrefab);
             }
@@ -99,8 +95,43 @@ namespace Pooling
         {
             instantiatedGameObjects.Remove(instance);
 
-            storedGameObjects.Add(instance);
-            instance.SetActive(false);
+            StoreInstance(instance);
+        }
+
+        private void StoreInstance(GameObject instance)
+        {
+            if (storedGameObjects.Count < capacity) // в процессе работы если места мало - увеличить
+            {
+                storedGameObjects.Add(instance);
+                instance.SetActive(false); 
+            }
+            else // если места много - уменьшить
+            {
+                Object.Destroy(instance);
+            }
+        }
+
+        private GameObject TryGetInstanceFromStore()
+        {
+            GameObject instance = null;
+
+            if (storedGameObjects.Any())
+            {
+                instance = storedGameObjects.First();
+                storedGameObjects.Remove(instance);
+                instance.SetActive(true);
+            }
+
+            return instance;
+        }
+
+        private void PreloadInstances(int count)
+        {
+            for (var i = 0; i < count; i++)
+            {
+                var instance = Object.Instantiate(gameObjectPrefab);
+                StoreInstance(instance);
+            }
         }
     }
 }
